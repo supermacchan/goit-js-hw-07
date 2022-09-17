@@ -4,6 +4,11 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 const galleryParent = document.querySelector('.gallery');
+const instance = basicLightbox.create(`
+        <div class="modal">
+            <img class="modal__image" src="" alt="" />
+        </div>
+    `)
 
 const galleryList = galleryItems.map(item => {
     const listItem = document.createElement('div');
@@ -35,22 +40,22 @@ function onImageClick(e) {
         return;
     }
 
-    const instance = basicLightbox.create(`
-        <div class="modal">
-            <img class="modal__image" src="" alt="" />
-        </div>
-    `)
-
     instance.show();
 
     const modalImage = document.querySelector('.modal__image');
     modalImage.src = e.target.dataset.source;
     modalImage.alt = e.target.alt;
 
-    window.addEventListener('keydown', (e) => {
-        if (instance.visible() && e.code === "Escape") {
+    window.addEventListener('keydown', (evt) => {
+        if (instance.visible() && evt.code === "Escape") {
         instance.close();
         }
         return;
     });
+
+    const modal = document.querySelector('.modal');
+    modal.addEventListener('click', (event) => {
+        instance.close();
+    });
 }
+
