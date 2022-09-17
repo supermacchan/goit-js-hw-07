@@ -46,5 +46,11 @@ function onImageClick(e) {
     const modalImage = document.querySelector('.modal__image');
     modalImage.src = e.target.dataset.source;
     modalImage.alt = e.target.alt;
-}
 
+    window.addEventListener('keydown', (e) => {
+        if (instance.visible() && e.code === "Escape") {
+        instance.close();
+        }
+        return;
+    });
+}
