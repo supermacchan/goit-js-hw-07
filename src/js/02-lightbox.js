@@ -27,31 +27,10 @@ const galleryList = galleryItems.map(item => {
 
 galleryParent.append(...galleryList);
 
-let gallery = new SimpleLightbox('.gallery a');
-
-// galleryParent.addEventListener('click', onImageClick);
-
-// function onImageClick(e) {
-//     e.preventDefault();
-//     if (e.target.nodeName !== "IMG") {
-//         return;
-//     }
-
-//     instance.show();
-
-//     const modalImage = document.querySelector('.modal__image');
-//     modalImage.src = e.target.dataset.source;
-//     modalImage.alt = e.target.alt;
-
-//     window.addEventListener('keydown', (evt) => {
-//         if (instance.visible() && evt.code === "Escape") {
-//         instance.close();
-//         }
-//         return;
-//     });
-
-//     const modal = document.querySelector('.modal');
-//     modal.addEventListener('click', (event) => {
-//         instance.close();
-//     });
-// }
+let gallery = new SimpleLightbox('.gallery a', {
+    captions: true,
+    captionSelector: 'img',
+    captionType: 'attr',
+    captionsData: 'alt',
+    captionDelay: 250,
+});
