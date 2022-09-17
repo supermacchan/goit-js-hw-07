@@ -4,6 +4,11 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 const galleryParent = document.querySelector('.gallery');
+const instance = basicLightbox.create(`
+        <div class="modal">
+            <img class="modal__image" src="" alt="" />
+        </div>
+    `);
 
 const galleryList = galleryItems.map(item => {
     const listItem = document.createElement('div');
@@ -35,12 +40,6 @@ function onImageClick(e) {
         return;
     }
 
-    const instance = basicLightbox.create(`
-        <div class="modal">
-            <img class="modal__image" src="" alt="" />
-        </div>
-    `)
-    
     instance.show();
 
     const modalImage = document.querySelector('.modal__image');
